@@ -19,7 +19,7 @@ S2Logger provides an example data receiver, `recevier.py`; however, the user is 
  3. Edit the part's program.
      1. The program should set a variable "LogFrequency" to the number of samples per second to be send
      2. The program then can set any number of variables beginning with "log_". These will be logged.
- 4. In the part's settings panel you can also set the host and port to send packets to. This is localhost:2873 by default.
+ 4. In the part's settings panel you can also set the host and port to send packets to. This is localhost:2837 by default.
  5. Start either the provided `reciever.py` script or your own derived receiver script.
  6. Launch the craft, click the Orange Black Box, and click the activate button in the context menu to start logging.
  
