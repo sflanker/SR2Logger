@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Part name="OrangeBlackBox">
-  <PartType id="OrangeBlackBox" includeInBodyDrag="true" name="OrangeBlackBox" prefabPath="Assets/Resources/Craft/Parts/Prefabs/OrangeBlackBox.prefab" mass="20" price="500000" partCollisions="Default" defaultMaterials="0,1,2,3,4" subpartsSharePartStyle="false" stylesShareHeader="false">
+<Part name="OrangeBlackBoxPlus">
+  <PartType id="OrangeBlackBoxPlus" includeInBodyDrag="true" name="OrangeBlackBoxPlus" prefabPath="Assets/Resources/Craft/Parts/Prefabs/OrangeBlackBoxPlus.prefab" mass="20" price="500000" partCollisions="Default" defaultMaterials="0,1,2,3,4" subpartsSharePartStyle="false" stylesShareHeader="false">
     <Modifiers>
       <Config autoActivateIfNoStageOrActivationGroup="false" buoyancyBaseScale="1" buoyancyUserScale="1" centerOfMass="0,0,0" collisionDisconnectImpulse="1000" collisionDisconnectVelocity="15" collisionExplodeImpulse="2000" collisionExplodeVelocity="30" collisionVelocityMode="NormalOnly" dragScale="1" fuelLine="false" heatShield="0" includeInDrag="true" inertiaTensorBaseScale="1" inertiaTensorMin="0.05" inertiaTensorUserScale="1" massScale="1" maxDamage="100" maxTemperature="1500" partCollisionHandling="Default" partCollisionResponse="Default" partScale="1,1,1" raiseWaterEventsEvenIfNotBuoyant="false" stageActivationType="None" supportsActivation="true" thermalMassRatio="1" inspectorEnabled="true" partPropertiesEnabled="true" />
       <FlightProgram maxCallStackSize="100" maxInstructionsPerFrame="25" maxThreads="50" outputToDevConsole="false" inspectorEnabled="true" partPropertiesEnabled="true" />
@@ -17,7 +17,7 @@
     <DesignerPart name="Orange Black Box" category="Gizmos" description="A black box for logging external data. It's actually supposed to be orange. If it's not, please paint it orange" order="0" showInDesigner="true" snapshotDistanceScaler="1" snapshotRotation="30,30,0">
       <Assembly>
         <Parts>
-          <Part id="1" partType="OrangeBlackBox" position="0,0,0" rotation="0,0,0">
+          <Part id="1" partType="OrangeBlackBoxPlus" position="0,0,0" rotation="0,0,0">
             <Config />
             <FlightProgram />
             <SR2Logger.VariableLogger />

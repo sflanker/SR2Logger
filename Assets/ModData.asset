@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: ModData
   m_EditorClassIdentifier: 
   _assemblies:
-  - SR2Logger.dll
-  _author: WNP78
-  _description: Logs information to an external application over UDP
+  - SR2LoggerPlus.dll
+  _author: WNP78, sflanker
+  _description: Logs information to a file or to an external application over UDP
   _loadPriority: 1000
-  _name: SR2Logger
+  _name: SR2LoggerPlus
   _otherAssets: []
   _prefabs: []
   _steamDescription: 
@@ -26,11 +26,11 @@ MonoBehaviour:
   _steamTags: 
   _steamTitle: 
   _steamVisibility: 0
-  _versionMajor: 1
-  _versionMinor: 0
+  _versionMajor: 0
+  _versionMinor: 1
   _partCategories: []
   _parts:
-  - {fileID: 4900000, guid: 92fd84bab57d26d44949d6680d0f4da8, type: 3}
+  - {fileID: 4900000, guid: 1e7e53b2939674cfd98c78cf746909ea, type: 3}
   _partStyleExtensions: []
   _partTextureStyles: []
   _persistentObjects: []
