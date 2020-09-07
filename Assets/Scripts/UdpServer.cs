@@ -129,7 +129,18 @@ namespace Assets.Scripts.Craft
                     this._packetWriter.Write(StringEncoding.GetBytes(value.TextValue));
                     break;
                 case ExpressionType.List:
-                    // TODO: Add support for list variables.
+                    this._packetWriter.Write((Byte)TypeCodes.List);
+                    this._packetWriter.Write(value.ListValue.Count);
+                    foreach (var item in value.ListValue)
+                    {
+                        this._packetWriter.Write(item != null ? StringEncoding.GetByteCount(item) : -1);
+                        if (!String.IsNullOrEmpty(item))
+                        {
+                            this._packetWriter.Write(StringEncoding.GetBytes(item));
+                        }
+                    }
+
+                    break;
                 default:
                     Debug.LogWarning("Cannot log type: " + value.ExpressionType);
                     this._packetWriter.Write((Byte)TypeCodes.None);
@@ -159,8 +170,7 @@ namespace Assets.Scripts.Craft
                         this.ResetState();
                     }
                 }
-            }
-            finally
+            } finally
             {
                 this.packetSemaphore.Release();
             }
@@ -203,6 +213,7 @@ namespace Assets.Scripts.Craft
         Float64,
         Boolean,
         Vector3d,
-        Text
+        Text,
+        List
     }
 }

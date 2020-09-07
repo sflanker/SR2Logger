@@ -3,6 +3,8 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using Assets.Scripts.Vizzy.Craft;
+using ModApi.Craft;
 using ModApi.Craft.Parts;
 using ModApi.Craft.Program;
 using ModApi.GameLoop;
@@ -42,17 +44,17 @@ namespace Assets.Scripts.Craft.Parts.Modifiers
         {
             if (!this.initialized)
             {
-                Debug.Log($"Initializing {nameof(VariableLoggerScript)} {Version}");
+                Debug.Log($"Initializing {nameof(VariableLoggerScript)} {Version} on craft {this.PartScript.CraftScript.CraftNode.Name}");
 
                 // get flight program
-                this.flightProgramScript = PartScript.GetModifier<FlightProgramScript>();
+                this.flightProgramScript = this.PartScript.GetModifier<FlightProgramScript>();
                 if (this.flightProgramScript == null)
                 {
                     Debug.LogError("Logger script has no flight program: deactivating");
                     this.enabled = false;
                 } else
                 {
-                    var process = (Process)_processField.GetValue(flightProgramScript);
+                    var process = (Process)_processField.GetValue(this.flightProgramScript);
 
                     // Inject tracing log service.
                     var tracer = new TracingLogService(this, process.LogService);
@@ -73,8 +75,31 @@ namespace Assets.Scripts.Craft.Parts.Modifiers
                     if (!String.IsNullOrEmpty(this.Data.Path))
                     {
                         var absPath = Path.Combine(Application.persistentDataPath, this.Data.Path);
-                        Debug.Log($"Logging Data To '{absPath}'");
-                        this.logFileWriter = new StreamWriter(absPath, append: true);
+
+                        var dir = Path.GetDirectoryName(absPath);
+                        var file = Path.GetFileNameWithoutExtension(absPath);
+                        var ext = Path.GetExtension(absPath);
+
+                        if (String.IsNullOrEmpty(file) && !String.IsNullOrEmpty(ext))
+                        {
+                            file = ext;
+                            ext = "";
+                        }
+
+                        if (String.IsNullOrEmpty(file))
+                        {
+                            Debug.LogError($"The path specified does not include a filename: '{absPath}'");
+                        }
+                        else if (!Directory.Exists(Path.GetDirectoryName(dir)))
+                        {
+                            Debug.LogError($"The path specified is within a directory does not exists: '{absPath}'");
+                        }
+                        else
+                        {
+                            var actualPath = Path.Combine(dir, $"{file}-{this.PartScript.CraftScript.CraftNode.NodeId}{ext}");
+                            Debug.Log($"Logging Data To '{actualPath}'");
+                            this.logFileWriter = new StreamWriter(actualPath, append: true);
+                        }
                     }
 
                     // Convert from frequency in milliseconds to frequency in seconds
