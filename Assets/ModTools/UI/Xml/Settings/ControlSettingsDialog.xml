@@ -91,6 +91,9 @@
             <Button class="btn context-menu-button" onClick="OnRemoveControllerClicked();">
               <TextMeshPro text="Remove Controller" />
             </Button>
+            <Button class="btn context-menu-button" onClick="OnOpenDevConsoleClicked();">
+              <TextMeshPro text="Open Dev Console" />
+            </Button>
           </VerticalLayout>
         </RectTransform>
       </Panel>

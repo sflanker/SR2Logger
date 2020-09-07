@@ -69,6 +69,7 @@
     <Style id="set-time-mode" color="CraftInstruction" format="set time mode to [x]" tooltip="Sets the current time mode of the game." />
     <Style id="set-camera" color="CraftInstruction" format="set camera [x] to (0)" tooltip="Sets the property on the camera." />
     <Style id="set-part" color="CraftInstruction" format="set part (0) [x] to (1)" tooltip="Sets the property of the part with the specified ID." />
+    <Style id="switch-craft" color="CraftInstruction" format="switch to craft (0:ZeroOrMore)" tooltip="Switches to the craft with the specified ID. If the craft is far away, then this program may stop executing." />
     <Style id="prop-altitude" color="CraftExpression" format="altitude [x]" tooltip="Returns the altitude in meters." />
     <Style id="prop-orbit" color="CraftExpression" format="orbit [x]" tooltip="Returns the orbit parameter." />
     <Style id="prop-atmosphere" color="CraftExpression" format="atmosphere [x]" tooltip="Returns the atmosphere property." />
@@ -85,8 +86,10 @@
     <Style id="planet-to-position" color="CraftInstruction" format="convert (0) to position" tooltip="Converts the (latitude, longitude, AGL) vector to a position vector." />
     <Style id="planet" color="CraftInstruction" format="planet (0) [x]" tooltip="Gets a property of the specified planet." />
     <Style id="part" color="CraftInstruction" format="part (0:ZeroOrMore) [x]" tooltip="Gets a property of the part with the specified ID." />
-    <Style id="part-id" color="CraftInstruction" format="part id of (0)" tooltip="The ID of the first part found with the specified name or -1 if none are found." />
+    <Style id="part-id" color="CraftInstruction" format="part ID of (0)" tooltip="The ID of the first part found with the specified name or -1 if none are found." />
     <Style id="part-transform" color="CraftInstruction" format="part (0) [x] (1)" tooltip="Converts the vector between local and PCI coordinates." />
+    <Style id="craft" color="CraftInstruction" format="craft (0:ZeroOrMore) [x]" tooltip="Gets a property of the craft with the specified ID." />
+    <Style id="craft-id" color="CraftInstruction" format="craft ID of (0)" tooltip="The ID of the first craft found with the specified name or -1 if none are found. If no name is provided, then the ID of the player's craft is returned." />
     <Style id="true" color="Operator" format="true" tooltip="" />
     <Style id="false" color="Operator" format="false" tooltip="" />
     <Style id="flight-start" color="Event" format="on start" tooltip="Event called when the craft enters the flight scene for the first time." />
@@ -305,6 +308,9 @@
         <Constant number="0" />
         <Constant number="0" />
       </SetCraftProperty>
+      <SwitchCraft style="switch-craft">
+        <Constant number="0" />
+      </SwitchCraft>
     </Category>
     <Category name="Craft Information" icon="Ui/Vizzy/ToolboxIconExpressions">
       <CraftProperty style="prop-altitude" property="Altitude.AGL" />
@@ -339,6 +345,12 @@
       <CraftProperty style="part-transform" property="Part.LocalToPci">
         <Constant number="0" />
         <Constant vector="0,0,0" />
+      </CraftProperty>
+      <CraftProperty style="craft" property="Craft.Position">
+        <Constant number="0" />
+      </CraftProperty>
+      <CraftProperty style="craft-id" property="Craft.NameToID">
+        <Constant text="CraftName" />
       </CraftProperty>
       <Constant style="true" bool="true" />
       <Constant style="false" bool="false" />
